@@ -1,5 +1,5 @@
-from adapters.storage import Storage
-from entities.alert import Alert
+from cryptalme.adapters.storage import Storage
+from cryptalme.entities.alert import Alert
 
 
 class AlertUseCase:

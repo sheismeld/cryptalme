@@ -1,9 +1,13 @@
-from adapters.storage import Storage
-from entities.user import User
+from cryptalme.adapters.storage import Storage
+from cryptalme.entities.user import User
+
 
 class UserUseCase:
     def __init__(self, storage: Storage):
         self.storage = storage
+
+    def list_user(self):
+        return self.storage.list_user()
 
     def get_user(self, user_id):
         return self.storage.get_user(user_id)
@@ -16,4 +20,3 @@ class UserUseCase:
 
     def delete_user(self, user_id):
         return self.delete_user(user_id)
-

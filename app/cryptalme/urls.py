@@ -6,8 +6,10 @@ from cryptalme import views
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
+router.register(r'alerts', views.AlertViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('', views.index, name="index"),
+    path('pub/', views.index, name="index"),
+    path('sub/', views.listen, name="sub"),
 ]

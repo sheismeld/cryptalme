@@ -95,10 +95,14 @@ class UserModel(AbstractUser):
 class AlertModel(models.Model):
     stop_price = models.IntegerField("Target price")
     alert_type = models.CharField("Alert type", max_length=10)
+    triggered = models.BooleanField(default=False)
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     @classmethod
     def from_entity(cls, alert: Alert) -> 'AlertModel':
         return AlertModel(stop_price=alert.stop_price, alert_type=alert.alert_type)
 
     def to_entity(self) -> Alert:
-        return Alert(id=self.id, stop_price=self.stop_price, alert_type=self.alert_type)
+        return Alert(alert_id=self.id, stop_price=self.stop_price, alert_type=self.alert_type, user=self.user.to_entity())

@@ -3,6 +3,10 @@ from abc import ABC, abstractmethod
 
 class Storage(ABC):
     @abstractmethod
+    def list_user(self, *args, **kwargs):
+        pass
+
+    @abstractmethod
     def get_user(self, *args, **kwargs):
         pass
 
@@ -16,6 +20,10 @@ class Storage(ABC):
 
     @abstractmethod
     def delete_user(self, *args, **kwargs):
+        pass
+
+    @abstractmethod
+    def list_alert(self, *args, **kwargs):
         pass
 
     @abstractmethod

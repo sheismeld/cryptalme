@@ -1,10 +1,13 @@
-from adapters.storage import Storage
-from entities.alert import Alert
-from entities.user import User
-from models import UserModel, AlertModel
+from cryptalme.adapters.storage import Storage
+from cryptalme.entities.alert import Alert
+from cryptalme.entities.user import User
+from cryptalme.models import UserModel, AlertModel
 
 
 class DjangoStorage(Storage):
+    def list_user(self):
+        return UserModel.objects.all()
+
     def get_user(self, user_id: int):
         try:
             user = UserModel.objects.get(pk=user_id)
@@ -23,6 +26,9 @@ class DjangoStorage(Storage):
     def delete_user(self, user_id):
         user = self.get_user(user_id)
         return user.delete()
+
+    def list_alert(self):
+        return AlertModel.objects.all()
 
     def get_alert(self, alert_id):
         try:
